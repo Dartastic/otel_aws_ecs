@@ -10,6 +10,7 @@ const _tracerName = 'dartastic_otel_libs_aws_ecs';
 APITracer _tracer() => OTelAPI.tracerProvider().getTracer(_tracerName);
 
 class AwsEcsResult {
+  /// Creates a result.
   const AwsEcsResult({
     this.region,
     this.cluster,
@@ -94,8 +95,13 @@ class AwsEcsResult {
   final int? statusCode;
 }
 
+/// What a traced call returned: the value for the caller plus fields
+/// recorded on the span.
 class AwsEcsCallResult<T> {
+  /// Creates a call result.
   const AwsEcsCallResult({required this.value, this.result});
+
+  /// The value returned to the caller.
   final T value;
   final AwsEcsResult? result;
 }
